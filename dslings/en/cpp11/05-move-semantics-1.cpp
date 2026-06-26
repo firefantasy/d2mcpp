@@ -78,23 +78,21 @@ int main() { // No compiler optimization
     {
         Buffer buff1;
 
-        buff1 = Buffer(); // Case 1: Temporary object assignment
+        buff1 = std::move(Buffer()); // Case 1: Temporary object assignment
 
         d2x_assert_eq(move_assignment_counter, 1);
 
         Buffer buff2;
 
-        buff2 = process(buff1); // Case 2: Intermediate object assignment
+        buff2 = process(std::move(buff1)); // Case 2: Intermediate object assignment
 
         d2x_assert_eq(move_assignment_counter, 2);
 
-        buff2 = buff1; // Case 3: Explicit move assignment
+        buff2 = std::move(buff1); // Case 3: Explicit move assignment
 
         d2x_assert_eq(move_assignment_counter, 3);
 
     }
-
-    D2X_WAIT
 
     return 0;
 }

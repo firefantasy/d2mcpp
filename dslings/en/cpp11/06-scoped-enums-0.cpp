@@ -22,13 +22,11 @@ enum Color {
     RED,
     GREEN,
     BLUE,
-    ORANGE // 1. Type conflict - Orange color
 };
 
 enum Fruit {
     Apple,
     Banana,
-    ORANGE // 1. Type conflict - Orange fruit
 };
 
 int main() {
@@ -40,16 +38,13 @@ int main() {
     d2x_assert_eq(fruit, Apple);
 
     // 2. Syntactically correct, but logically wrong type matching
-    if (color == Apple) { // Do not delete this line of code
+    if (color == Color::RED) { // Do not delete this line of code
         // Code will run here
-        D2X_WAIT
     }
 
-    if (fruit == RED) {
-        D2X_WAIT
+    if (fruit == Fruit::Apple) {
     }
 
-    D2X_WAIT
 
     return 0;
 }

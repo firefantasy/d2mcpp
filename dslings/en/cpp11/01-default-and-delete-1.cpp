@@ -23,6 +23,10 @@
 struct UniquePtr {
     void *dataPtr;
     UniquePtr() = default;
+    UniquePtr(const UniquePtr &) = delete;
+    UniquePtr& operator=(const UniquePtr &) = delete;
+    UniquePtr(UniquePtr &&) = default;
+    UniquePtr& operator=(UniquePtr &&) = default;
 };
 
 int main() { // Do not directly modify the code in the main function
@@ -42,7 +46,6 @@ int main() { // Do not directly modify the code in the main function
     // a = std::move(c); // ok
     d2x_assert(std::is_move_assignable<UniquePtr>::value == true);
 
-    D2X_WAIT
 
     return 0;
 }

@@ -59,18 +59,16 @@ int main() {
 
         d2x_assert(buff1DataPtr == buff2DataPtr);
 
-        Buffer buff3 = buff2;
+        Buffer buff3 = std::move(buff2);
         auto buff3DataPtr = buff3.data_ptr();
 
         d2x_assert(buff2DataPtr == buff3DataPtr);
 
-        Buffer buff4 = process(buff3);
+        Buffer buff4 = process(std::move(buff3));
         auto buff4DataPtr = buff4.data_ptr();
 
         d2x_assert(buff3DataPtr == buff4DataPtr);
     }
-
-    D2X_WAIT
 
     return 0;
 }

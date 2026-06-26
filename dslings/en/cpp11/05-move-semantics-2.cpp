@@ -70,15 +70,13 @@ int main() { // Move semantics - Demonstrating moving resources not objects
 
         auto old_b1_data_ptr = b1.data_ptr();
 
-        Buffer b2 = b1; // std::move(b1);
+        Buffer b2 = std::move(b1); // std::move(b1);
 
         d2x_assert(&b1 != &b2); // b1 and b2 are different objects
         d2x_assert(old_b1_data_ptr == b2.data_ptr());
         d2x_assert(b1.data_ptr() == nullptr); // b1's resources have been moved
 
     }
-
-    D2X_WAIT
 
     return 0;
 }

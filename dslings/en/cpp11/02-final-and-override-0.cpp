@@ -25,7 +25,7 @@ struct A {
         std::cout << "A::func1()" << std::endl;
     }
 
-    void func2() {
+    virtual void func2() {
         std::cout << "A::func2()" << std::endl;
     }
 };
@@ -50,8 +50,6 @@ int main() {
     A *a = &override;
     a->func1(); // B::func1()
     a->func2(); // A::func2()
-
-    D2X_WAIT
 
     return 0;
 }

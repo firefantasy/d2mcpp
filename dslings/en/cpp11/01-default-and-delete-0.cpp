@@ -23,9 +23,10 @@
 struct A { };
 struct B {
     B(int x) { std::cout << "B(int x)" << std::endl; }
+    B() = default;
 };
 struct C {
-    C() { }
+    C() {}
     C(int x = 1) { std::cout << "C(int x = 1)" << std::endl; }
 };
 
@@ -34,8 +35,6 @@ int main() { // Do not directly modify the code in the main function
     A a;
     B b;
     C c(1);
-
-    D2X_WAIT
 
     return 0;
 }

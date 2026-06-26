@@ -52,7 +52,5 @@ int main() {
     d2x_assert_eq(a->func1(), 3); // B::func1()
     d2x_assert_eq(a->func2(), 2); // A::func2()
 
-    D2X_WAIT
-
     return 0;
 }
