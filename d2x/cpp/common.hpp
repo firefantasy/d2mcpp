@@ -1,6 +1,7 @@
 #ifndef COMMON_HPP_D2X
 #define COMMON_HPP_D2X
 
+#include <cstdint>
 #include <iostream>
 #include <string>
 

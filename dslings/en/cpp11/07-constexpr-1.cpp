@@ -30,11 +30,11 @@ constexpr int factorial(int n) {
     return n <= 1 ? 1 : n * factorial(n - 1);
 }
 
-double pow(double base, int exp) {
+constexpr double pow(double base, int exp) {
     return exp == 0 ? 1.0 : base * pow(base, exp - 1);
 }
 
-constexpr double mysin(double x) {
+static constexpr double mysin(double x) {
     //constexpr double PI = 3.14159265358979323846;
     //constexpr double radius = x * PI / 180.0;
     #define radius(x) (x * 3.14159265358979323846 / 180.0)
@@ -56,8 +56,8 @@ int main() {
 
     // 3. Compile-time computation example:
     //     What value makes value! + (1 + 2 + .. + value) > 10000?
-    constexpr int value = 5;
-    int f = factorial(value);
+    constexpr int value = 10;
+    constexpr int f = factorial(value);
     constexpr int s = Sum<value>::value;
     constexpr int ans = f + s;
 
@@ -66,8 +66,6 @@ int main() {
     // 4. Compile-time sin value computation (automatic lookup table) - Time complexity O(1)
     constexpr double sin30 = mysin(30.0);
     std::cout << "mysin(30): " << sin30 << " " << std::endl;
-
-    D2X_WAIT
 
     return 0;
 }
