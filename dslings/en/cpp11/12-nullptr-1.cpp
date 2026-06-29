@@ -43,16 +43,14 @@ void display(int value) {
 int main() {
 
     display(0);
+    process(0);
+    display(nullptr);
     process(nullptr);
-    display(NULL);
-    process(NULL);
 
     d2x_assert(process_int_called);
     d2x_assert(display_int_called);
     d2x_assert(display_ptr_called);
     d2x_assert(display_ptr_called);
-
-    D2X_WAIT
 
     return 0;
 }

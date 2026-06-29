@@ -24,8 +24,8 @@
 int main() {
 
     // 1. Basic type alias definition
-    D2X_YOUR_ANSWER Integer = int;
-    D2X_YOUR_ANSWER = int;
+    using Integer = int;
+    using Real = double;
 
     bool ok = std::is_same<Integer, int>::value; d2x_assert(ok);
     ok = std::is_same<Real, double>::value; d2x_assert(ok);
@@ -43,8 +43,6 @@ int main() {
     Integer d = c;  // Can assign because they are essentially both int
 
     d2x_assert_eq(c, d);
-
-    D2X_WAIT
 
     return 0;
 }

@@ -20,44 +20,50 @@
 #include <iostream>
 #include <string>
 
-class ObjectBase {
+class ObjectBase
+{
 public:
     ObjectBase(int x) { std::cout << "ObjectBase::ObjectBase(int): " << x << std::endl; }
     ObjectBase(double x) { std::cout << "ObjectBase::ObjectBase(double): " << x << std::endl; }
 
-    D2X_YOUR_ANSWER
+    ObjectBase(int x, double y)
+    {
+        std::cout << "ObjectBase::ObjectBase(int, double): " << x << ", " << y << std::endl;
+    }
 
     void info() const { std::cout << "ObjectBase: " << this << std::endl; }
 };
 
-class ObjectA : public ObjectBase {
+class ObjectA : public ObjectBase
+{
 public:
     ObjectA(int x) : ObjectBase(x) { std::cout << "ObjectA::ObjectA(int)" << std::endl; }
     ObjectA(double y) : ObjectBase(y) { std::cout << "ObjectA::ObjectA(double)" << std::endl; }
 
-    D2X_YOUR_ANSWER
+    ObjectA(int x, double y) : ObjectBase(x, y) { std::cout << "ObjectA::ObjectA(int, double)" << std::endl; }
 
-    void tips_a() const {
+    void tips_a() const
+    {
         std::cout << "ObjectA: add constructors to ObjectA" << std::endl;
     }
 };
 
-class ObjectB : public ObjectBase {
+class ObjectB : public ObjectBase
+{
 public:
     using ObjectBase::ObjectBase;
-
-    // D2X_YOUR_ANSWER ?
-
-    void tips_b() const {
+    void tips_b() const
+    {
         std::cout << "ObjectB: add new constructors to ObjectBase" << std::endl;
     }
 };
 
-int main() { // Do not directly modify the code in the main function
+int main()
+{ // Do not directly modify the code in the main function
 
-    ObjectBase obj1(1), obj2(2.0), obj3 { 3, 4.0 };
-    ObjectA a1(11), a2(22.0), a3 { 33, 44.0 };
-    ObjectB b1(111), b2(222.0), b3 { 333, 444.0 };
+    ObjectBase obj1(1), obj2(2.0), obj3{3, 4.0};
+    ObjectA a1(11), a2(22.0), a3{33, 44.0};
+    ObjectB b1(111), b2(222.0), b3{333, 444.0};
 
     obj1.info();
     a1.info();
@@ -65,8 +71,6 @@ int main() { // Do not directly modify the code in the main function
 
     a1.tips_a();
     b1.tips_b();
-
-    D2X_WAIT
 
     return 0;
 }

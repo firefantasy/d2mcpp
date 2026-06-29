@@ -44,8 +44,10 @@ public:
 
 class StudentTest : public Student {
 public:
+    using Student::Student;
 
-    D2X_YOUR_ANSWER // Implement Student's helper test class
+    bool score_valid() const { return score >= 0 && score <= 100; }
+    bool age_valid() const { return age > 0 && age <= 200; }
 
     std::string to_string() const {
         return "{" + id + ", " + name + ", " + std::to_string(age) + ", " + std::to_string(score) + "}";
@@ -89,8 +91,6 @@ int main() { // Do not directly modify the code in the main function
         d2x_assert(studentTest.age_valid() == false);
 
     }
-
-    D2X_WAIT
 
     return 0;
 }

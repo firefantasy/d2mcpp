@@ -25,14 +25,14 @@
 
 // 1. Basic alias template
 template<typename T>
-D2X_YOUR_ANSWER Vec = std::vector<T>;
+using Vec = std::vector<T>;
 
 // 2. Fixed-length alias template
 template<typename T>
-using Vec3 = std::array<T, 1>;
+using Vec3 = std::array<T, 3>;
 
 // 3. Alias template with default parameters
-template<typename T, typename Compare>
+template<typename T, typename Compare = std::less<T>>
 using Heap = std::priority_queue<T, std::vector<T>, Compare>;
 
 int main() {
@@ -48,8 +48,6 @@ int main() {
     d2x_assert_eq(v3[0], 1.0f);
     d2x_assert_eq(v3[1], 2.0f);
     d2x_assert_eq(v3[2], 3.0f);
-
-    D2X_WAIT
 
     return 0;
 }

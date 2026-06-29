@@ -20,11 +20,10 @@
 #include <d2x/cpp/common.hpp>
 #include <type_traits>
 
+template <typename T>
+using my_add_pointer_t = typename std::add_pointer<T>::type;
+
 int main() {
-
-    template <typename T>
-    D2X_YOUR_ANSWER my_add_pointer_t = typename std::add_pointer<T>;
-
     int c = 20;
     my_add_pointer_t<decltype(c)> ptr = &c;
 
@@ -33,7 +32,6 @@ int main() {
     d2x_assert(ok);
     d2x_assert_eq(*ptr, 20);
 
-    D2X_WAIT
-
     return 0;
 }
+

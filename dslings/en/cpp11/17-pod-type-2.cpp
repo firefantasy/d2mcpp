@@ -51,7 +51,8 @@ extern "C" void c_send_header(const void* data, std::size_t size) {
 //  1. Build a MessageHeader from the Message (len = payload.size(), type = msg.type, flags = 0).
 //  2. Call c_send_header to pass the POD header as raw bytes to the C interface.
 void send_message_to_c(const Message& msg) {
-    D2X_YOUR_ANSWER
+    MessageHeader header{static_cast<std::uint32_t>(msg.payload.size()), msg.type, 0};
+    c_send_header(&header, sizeof(MessageHeader));
 }
 
 int main() {
@@ -65,8 +66,6 @@ int main() {
     d2x_assert_eq(g_last_header.type, msg.type);
     d2x_assert_eq(g_last_header.len, static_cast<std::uint32_t>(msg.payload.size()));
     d2x_assert_eq(g_last_header.flags, static_cast<std::uint16_t>(0));
-
-    D2X_WAIT
 
     return 0;
 }

@@ -24,7 +24,7 @@
 union M
 {
     int a1;
-    D2X_YOUR_ANSWER a2;
+    std::vector<int> a2;
     M() {}
     M(const std::vector<int>& vec) : a2(vec) {
     }
@@ -40,15 +40,13 @@ int main() {
     // 1. Construct with placement new
     new (&u1.a2) std::vector<int>();
 
-    u1.a2 = {1, D2X_YOUR_ANSWER, 3};
+    u1.a2 = {1, 42, 3};
 
     // 2. use assert to verify the contents
     d2x_assert_eq(u1.a2[1], 42);
 
     // 3. Manually call the destructor
     u1.a2.~vector();
-
-    D2X_WAIT
 
     return 0;
 }

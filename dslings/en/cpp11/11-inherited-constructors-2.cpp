@@ -44,6 +44,17 @@ public:
     NoCopy& operator=(NoCopy&&) = default;
 };
 
+template <typename T>
+class NoMove : public T {
+public:
+    using T::T;
+
+    NoMove(const NoMove&) = delete;
+    NoMove& operator=(const NoMove&) = delete;
+    NoMove(NoMove&&) = default;
+    NoMove& operator=(NoMove&&) = default;
+};
+
 int main() {
 
     Point p1(1, 1);
@@ -57,7 +68,7 @@ int main() {
     d2x_assert_eq(p1.mX, p11.mX);
     d2x_assert_eq(p1.mY, p11.mY);
 
-    decltype(p2) p22 = p2; // by std::move?
+    decltype(p2) p22 = std::move(p2); // by std::move?
     std::cout << "p22: " << p22.to_string() << std::endl;
     d2x_assert_eq(p2.mX, p22.mX);
     d2x_assert_eq(p2.mY, p22.mY);
@@ -70,8 +81,6 @@ int main() {
     std::cout << "p33: " << p33.to_string() << std::endl;
     d2x_assert_eq(p3.mX, p33.mX);
     d2x_assert_eq(p3.mY, p33.mY);
-
-    D2X_WAIT
 
     return 0;
 }

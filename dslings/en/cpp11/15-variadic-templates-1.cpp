@@ -15,11 +15,14 @@
 
 #include <d2x/cpp/common.hpp>
 
-D2X_YOUR_ANSWER
+template<typename T>
+T sum(T first) {
+    return first;
+}
 
-template<typename T, D2X_YOUR_ANSWER>
-T sum(T first, D2X_YOUR_ANSWER) {
-    return first + sum(D2X_YOUR_ANSWER);
+template<typename T, typename... Args>
+T sum(T first, Args... args) {
+    return first + sum(args...);
 }
 
 int main() {
@@ -33,8 +36,6 @@ int main() {
     // Note: the return type is determined by the first argument T
     int res3 = sum(10, 20.5);
     d2x_assert_eq(res3, 30);
-
-    D2X_WAIT
 
     return 0;
 }

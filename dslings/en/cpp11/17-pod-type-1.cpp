@@ -38,13 +38,11 @@ int main() {
     Packet p2{};
 
     // TODO: use std::memcpy to copy the contents of p1 into p2.
-    D2X_YOUR_ANSWER;
+    std::memcpy(&p2, &p1, sizeof(Packet));
 
     d2x_assert_eq(p2.len, 42u);
     d2x_assert_eq(p2.type, static_cast<std::uint16_t>(1));
     d2x_assert_eq(p2.flags, static_cast<std::uint16_t>(0xFF));
-
-    D2X_WAIT
 
     return 0;
 }

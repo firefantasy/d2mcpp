@@ -46,28 +46,28 @@ private:
 int main() {
     // TODO: use static_assert to check which of A/B/C/D are POD types.
     // 1. Check if A/B are POD
-    D2X_YOUR_ANSWER;
+    static_assert(std::is_pod<A>::value, "A is not POD");
+    static_assert(std::is_pod<B>::value, "B is not POD");
 
-    // 2. Check that C/D are not POD
-    D2X_YOUR_ANSWER;
+    static_assert(!std::is_pod<C>::value, "C is not POD");
+    static_assert(!std::is_pod<D>::value, "D is not POD");
 
     // 3. Check if A is trivial / standard_layout type, write the result to ok
-    bool ok = D2X_YOUR_ANSWER;
+    bool ok = std::is_trivial<A>::value && std::is_standard_layout<A>::value;
     d2x_assert(ok);
 
     // 4. Check if B is trivial / standard_layout type, write the result to ok
-    ok = D2X_YOUR_ANSWER;
+    ok = std::is_trivial<B>::value && std::is_standard_layout<B>::value;
     d2x_assert(ok);
 
     // 5. Check if C is trivial type, write the result to ok
-    ok = D2X_YOUR_ANSWER;
+    ok = !std::is_trivial<C>::value;
     d2x_assert(ok);
 
     // 6. Check if D is not standard_layout type, write the result to ok
-    ok = D2X_YOUR_ANSWER;
+    ok = std::is_standard_layout<D>::value;
     d2x_assert(!ok);
 
-    D2X_WAIT
 }
 
 

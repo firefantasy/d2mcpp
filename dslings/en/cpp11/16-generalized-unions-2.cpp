@@ -26,7 +26,7 @@
 
 // Tag type — marks which member of the union is active
 enum class Tag {
-    D2X_YOUR_ANSWER,// integer is active
+    INTEGER,         // integer is active
     STRING           // string is active
 };
 
@@ -45,13 +45,13 @@ struct Value {
     Data data;
 
     // Construct with int
-    Value(int val) : tag(D2X_YOUR_ANSWER) {
+    Value(int val) : tag(Tag::INTEGER) {
         new (&data.i) int(val);
     }
 
     // Construct with string
     Value(const std::string& val) : tag(Tag::STRING) {
-        D2X_YOUR_ANSWER;
+        new (&data.s) std::string(val);
     }
 
     // Access int member — valid only when tag == INTEGER
@@ -95,11 +95,10 @@ int main() {
         v3.tag = Tag::INTEGER;
         v3.data.i = 100;
 
-        d2x_assert_eq(v3.as_int(), D2X_YOUR_ANSWER);
+        d2x_assert_eq(v3.as_int(), 100);
 
         // When v3 goes out of scope, ~Value() sees tag == INTEGER, skips string destruction
     }    
-    D2X_WAIT
 
     return 0;
 }

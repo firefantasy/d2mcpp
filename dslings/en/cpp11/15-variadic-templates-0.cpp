@@ -27,14 +27,14 @@ std::stringstream ss;
 
 // Define the recursion terminating function
 // This is invoked when the parameter pack is empty
-D2X_YOUR_ANSWER
+void print() {}
 
 // Define the variadic template function
-template<typename T,D2X_YOUR_ANSWER>
-void print(T first, D2X_YOUR_ANSWER args) {
+template<typename T, typename... Args>
+void print(T first, Args... args) {
     ss << first << " ";
     // Recursive call: process the remaining arguments
-    print(D2X_YOUR_ANSWER);
+    print(args...);
 }
 
 int main() {
@@ -42,8 +42,6 @@ int main() {
 
     std::string result = ss.str();
     d2x_assert(result == "1 hello 3.14 ");
-
-    D2X_WAIT
 
     return 0;
 }

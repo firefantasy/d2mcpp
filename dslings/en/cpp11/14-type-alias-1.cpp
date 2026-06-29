@@ -32,7 +32,7 @@ void example_func(int a, int b) {
 int main() {
 
     // 1. Function pointer alias
-    D2X_YOUR_ANSWER FuncPtr = void(*)(int, int);
+    using FuncPtr = void(*)(int, int);
 
     FuncPtr func = example_func;
 
@@ -40,15 +40,15 @@ int main() {
     d2x_assert_eq(func_called, 3);
 
     // 2. Container type alias
-    // Use using to define an alias for vector<string>
-    D2X_YOUR_ANSWER = std::vector<std::string>;
+    // Use g t to define an alias for vector<string>
+    using StringVector = std::vector<std::string>;
 
     // Using container type alias
     StringVector strings = {"hello", "world"};
 
     // 3. Nested type alias
     struct Container {
-        ValueType = int
+        using ValueType = int;
     };
 
     Container::ValueType value = 100;
@@ -57,8 +57,6 @@ int main() {
     d2x_assert(strings[0] == "hello");
     d2x_assert(strings[1] == "world");
     d2x_assert_eq(value, 100);
-
-    D2X_WAIT
 
     return 0;
 }

@@ -23,9 +23,9 @@
 
 union M
 {
-    int a1 = D2X_YOUR_ANSWER;
-    int a2 = 21;    // Remove redundant initializations
-    D2X_YOUR_ANSWER a3;
+    int a1 = 42;
+    int a2;    // Remove redundant initializations
+    double a3;
     char c;
 };
 
@@ -41,8 +41,6 @@ int main() {
     u1.a3 = val;
 
     u1.c = 'x';
-
-    D2X_WAIT
 
     return 0;
 }
