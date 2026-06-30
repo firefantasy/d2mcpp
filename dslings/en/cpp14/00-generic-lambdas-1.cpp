@@ -30,7 +30,7 @@ int main() {
     std::vector<int> v1 = {5, 1, 4, 2, 8};
     std::vector<double> v2 = {3.1, 2.7, 8.5, 1.9};
 
-    auto desc = [](D2X_YOUR_ANSWER a, D2X_YOUR_ANSWER b) {
+    auto desc = [](auto a, auto b) {
         return a > b;
     };
 
@@ -39,7 +39,7 @@ int main() {
     d2x_assert_eq(v1[4], 1);
 
     std::sort(v2.begin(), v2.end(), desc);
-    d2x_assert_eq(v2[0], D2X_YOUR_ANSWER);
+    d2x_assert_eq(v2[0], 8.5);
 
     // 1. Generic lambda with capture — find_if
     int threshold = 3;
@@ -48,21 +48,19 @@ int main() {
     };
 
     auto it1 = std::find_if(v1.begin(), v1.end(), above);
-    d2x_assert(*it1 == D2X_YOUR_ANSWER);
+    d2x_assert(*it1 == 8);
 
     auto it2 = std::find_if(v2.begin(), v2.end(), above);
     d2x_assert(*it2 == 8.5);
 
     // 2. Generic lambda returning lambda — factory function
     auto make_multiplier = [](auto factor) {
-        return [factor](auto x) { return x * D2X_YOUR_ANSWER; };
+        return [factor](auto x) { return x * factor; };
     };
 
     auto times2 = make_multiplier(2);
     d2x_assert_eq(times2(10), 20);
     d2x_assert_eq(times2(0.5), 1.0);
-
-    D2X_WAIT
 
     return 0;
 }

@@ -26,17 +26,17 @@
 int main() {
 
     // 0. Simple generic lambda — identity
-    auto identity = [](D2X_YOUR_ANSWER x) {
+    auto identity = [](auto x) {
         return x;
     };
 
     d2x_assert_eq(identity(42), 42);
     d2x_assert(identity(std::string("hello")) == "hello");
-    d2x_assert_eq(identity(3.14), D2X_YOUR_ANSWER);
+    d2x_assert_eq(identity(3.14), 3.14);
 
     // 1. Generic lambda as comparator
     auto greater = [](auto a, auto b) {
-        return D2X_YOUR_ANSWER;
+        return a > b;
     };
 
     d2x_assert(greater(5, 3));
@@ -45,13 +45,11 @@ int main() {
 
     // 2. Verify deduced types
     auto get_type_size = [](auto x) {
-        return sizeof(D2X_YOUR_ANSWER);
+        return sizeof(x);
     };
 
     d2x_assert_eq(get_type_size(42), sizeof(int));
     d2x_assert_eq(get_type_size('c'), sizeof(char));
-
-    D2X_WAIT
 
     return 0;
 }
